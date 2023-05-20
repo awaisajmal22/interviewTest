@@ -21,7 +21,7 @@ Widget searchFormField(
       controller: controller,
       cursorColor: Colors.grey,
       style: TextStyle(
-          fontSize: 14.sp,
+          fontSize: 10.sp,
           color: Colors.grey,
           fontFamily: 'Poppins',
           fontWeight: FontWeight.w400),

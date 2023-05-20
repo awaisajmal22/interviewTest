@@ -27,6 +27,7 @@ class TransactionView extends StatelessWidget {
                 hintText: 'Search Here'),
             Expanded(
               child: ListView.builder(
+                shrinkWrap: true,
                   itemCount: 30,
                   itemBuilder: (context, index) {
                     return transactionListTile(
