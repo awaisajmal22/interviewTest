@@ -34,6 +34,9 @@ class TransactionDataModel {
         id: json["id"],
     );
 
+static List<TransactionDataModel> jsonToList(List<dynamic> emote) =>
+      emote.map<TransactionDataModel>((item) => TransactionDataModel.fromJson(item)).toList();
+
     Map<String, dynamic> toJson() => {
         "date": date!.toIso8601String(),
         "amount": amount,

@@ -9,7 +9,7 @@ class TransactionServices {
       var responce = await ApiServices().getRequest(ApiUrl.apiUrl);
       print(responce);
       if (responce.statusCode == 200) {
-        dataModel = TransactionDataModel.fromJson(responce);
+        dataModel = TransactionDataModel.jsonToList(responce) as TransactionDataModel;
       }
     } catch (e) {
       print(e);
