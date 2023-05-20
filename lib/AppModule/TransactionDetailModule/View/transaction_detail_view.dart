@@ -4,8 +4,8 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:sizer/sizer.dart';
 import 'package:test/Constant/appText.dart';
-import 'package:test/Constant/size_config.dart';
 
 class TransactionDetailView extends StatelessWidget {
   TransactionDetailView({super.key});
@@ -19,64 +19,48 @@ class TransactionDetailView extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
           child: ListView(
-        padding: EdgeInsets.symmetric(
-            horizontal: SizeConfig.widthMultiplier * 5,
-            vertical: SizeConfig.heightMultiplier * 5),
+        padding: EdgeInsets.symmetric(horizontal: 2.h, vertical: 2.h),
         children: [
-          
-          appText(
-              title: 'Date',
-              textAlign: TextAlign.left,
-              fontSize: SizeConfig.textMultiplier * 2.0),
+          appText(title: 'Date', textAlign: TextAlign.left, fontSize: 20.sp),
           SizedBox(
-            height: SizeConfig.heightMultiplier * 2.0,
+            height: 2.h,
           ),
           appText(
               title: DateFormat('dd-MM-yyyy').format(date),
               textAlign: TextAlign.left,
-              fontSize: SizeConfig.textMultiplier * 2.0),
+              fontSize: 20.sp),
           SizedBox(
-            height: SizeConfig.heightMultiplier * 5.0,
+            height: 4.h,
           ),
-          appText(
-              title: 'Price',
-              textAlign: TextAlign.left,
-              fontSize: SizeConfig.textMultiplier * 2.0),
+          appText(title: 'Price', textAlign: TextAlign.left, fontSize: 20.sp),
           SizedBox(
-            height: SizeConfig.heightMultiplier * 2.0,
+            height: 2.h,
           ),
           appText(
               title: "${ammount} ${curenccy}",
               textAlign: TextAlign.left,
-              fontSize: SizeConfig.textMultiplier * 2.0),
+              fontSize: 20.sp),
           SizedBox(
-            height: SizeConfig.heightMultiplier * 5.0,
+            height: 4.h,
           ),
-          appText(
-              title: 'Type',
-              textAlign: TextAlign.left,
-              fontSize: SizeConfig.textMultiplier * 2.0),
+          appText(title: 'Type', textAlign: TextAlign.left, fontSize: 20.sp),
           SizedBox(
-            height: SizeConfig.heightMultiplier * 2.0,
+            height: 2.h,
           ),
           appText(
               title: type.toString().split('.').last,
               textAlign: TextAlign.left,
-              fontSize: SizeConfig.textMultiplier * 2.0),
+              fontSize: 20.sp),
           SizedBox(
-            height: SizeConfig.heightMultiplier * 5.0,
+            height: 4.h,
           ),
           appText(
-              title: 'Description',
-              textAlign: TextAlign.left,
-              fontSize: SizeConfig.textMultiplier * 2.0),
+              title: 'Description', textAlign: TextAlign.left, fontSize: 20.sp),
           SizedBox(
-            height: SizeConfig.heightMultiplier * 2.0,
+            height: 2.h,
           ),
           appText(
-              title: description,
-              textAlign: TextAlign.left,
-              fontSize: SizeConfig.textMultiplier * 2.0),
+              title: description, textAlign: TextAlign.left, fontSize: 20.sp),
         ],
       )),
     );

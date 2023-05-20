@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:test/Constant/size_config.dart';
+import 'package:sizer/sizer.dart';
 
 Widget searchFormField(
     {required TextEditingController controller,
     required VoidCallback searchCallback,
     required String hintText}) {
   return Container(
-    alignment: Alignment.center,
-    padding: EdgeInsets.symmetric(horizontal: SizeConfig.widthMultiplier * 2.0),
+    padding: EdgeInsets.symmetric(horizontal: 2.h),
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         color: Colors.white,
@@ -22,22 +21,17 @@ Widget searchFormField(
       controller: controller,
       cursorColor: Colors.grey,
       style: TextStyle(
-          fontSize: SizeConfig.textMultiplier * 1.5,
-          color: Colors.grey,
-          fontWeight: FontWeight.w400),
+          fontSize: 15.sp, color: Colors.black, fontWeight: FontWeight.w400),
       textAlign: TextAlign.left,
       decoration: InputDecoration(
           hintText: hintText,
           hintStyle: TextStyle(
-              fontSize: SizeConfig.textMultiplier * 1.5,
-              color: Colors.grey,
+              fontSize: 15.sp,
+              color: Colors.black,
               fontWeight: FontWeight.w400),
-          prefixIcon: Padding(
-            padding: EdgeInsets.only(right: SizeConfig.widthMultiplier * 2.0),
-            child: GestureDetector(
-              onTap: searchCallback,
-              child: Icon(Icons.search),
-            ),
+          prefixIcon: GestureDetector(
+            onTap: searchCallback,
+            child: Icon(Icons.search),
           ),
 
           // ),

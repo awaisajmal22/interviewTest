@@ -36,6 +36,7 @@ class TransactionView extends StatelessWidget {
                             var val = transactionVM.dataModel.value[index];
                             var date = val.date;
                             return transactionListTile(
+                                context: context,
                                 date: DateFormat('dd-MM-yyyy').format(date!),
                                 price: "${val.amount} ${val.currency}",
                                 transactionType:
