@@ -4,21 +4,37 @@ import 'package:dio/dio.dart' as DIO;
 import 'package:flutter/cupertino.dart';
 
 class ApiServices {
-  Future getRequest(String apiUrl) async {
+  Future getRequest(
+    String apiurl,
+  ) async {
+    // if (await connectivityServices.onConnectivity()) {
     try {
       var dio = DIO.Dio();
-      var responce = await dio
-          .get(apiUrl)
-          .whenComplete(() => debugPrint('SuccessFull'))
-          .catchError((onError) {
-        debugPrint(onError);
+      var response = await dio
+          .get(
+        apiurl,
+        options: DIO.Options(headers: {
+          'accept': '*/*',
+        }),
+      )
+          .whenComplete(() {
+        debugPrint("Getting Process is Complete:");
+      }).catchError((onError) {
+        // if (onError is DioError) {
+        //     ShowMessage().showErrorMessage("No internet connection!");
+        //   }
+
+        debugPrint("GET Error: ${onError.toString()}");
       });
-      print(responce);
-      return responce;
-    } catch (e) {
-      if (e is SocketException) {
-        debugPrint("No internet connection!");
+
+      return response;
+    } catch (error) {
+      if (error is SocketException) {
+        print("No internet connection!");
       }
     }
+    // } else {
+    //   ShowMessage().showErrorMessage("No internet connection, try later");
+    // }
   }
 }

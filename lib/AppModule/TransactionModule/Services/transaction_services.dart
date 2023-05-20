@@ -1,15 +1,20 @@
+import 'package:dio/dio.dart';
 import 'package:test/AppModule/TransactionModule/Model/transaction_model.dart';
 import 'package:test/Network/api_services.dart';
 import 'package:test/Network/api_url.dart';
 
 class TransactionServices {
-  Future<TransactionDataModel> getDataModel() async {
-    TransactionDataModel dataModel = TransactionDataModel();
+  Future getDataModel() async {
+    
+    Dio dio = Dio();
+    List<TransactionDataModel> dataModel = <TransactionDataModel>[];
     try {
-      var responce = await ApiServices().getRequest(ApiUrl.apiUrl);
-      print(responce);
+      var responce = await dio.get(ApiUrl.apiUrl);
+      // print(responce);
       if (responce.statusCode == 200) {
-        dataModel = TransactionDataModel.jsonToList(responce) as TransactionDataModel;
+        dataModel = TransactionDataModel.jsonToList(responce.data);
+
+        print(dataModel);
       }
     } catch (e) {
       print(e);

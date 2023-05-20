@@ -4,9 +4,6 @@
 
 import 'dart:convert';
 
-List<TransactionDataModel> transactionDataModelFromJson(String str) => List<TransactionDataModel>.from(json.decode(str).map((x) => TransactionDataModel.fromJson(x)));
-
-String transactionDataModelToJson(List<TransactionDataModel> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class TransactionDataModel {
     DateTime? date;

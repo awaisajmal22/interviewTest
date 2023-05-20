@@ -6,7 +6,7 @@ import '../../../../Constant/appText.dart';
 Widget transactionListTile(
     {required VoidCallback voidCallback,
     required String date,
-    required double price,
+    required String price,
     required String transactionType}) {
   return GestureDetector(
     onTap: voidCallback,

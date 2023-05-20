@@ -8,16 +8,24 @@ class TransactionViewModel extends GetxController {
   @override
   void onInit() {
     // TODO: implement onInit
-    super.onInit();
     getData();
+    super.onInit();
   }
 
-  var dataModel = TransactionDataModel().obs;
+  RxList<TransactionDataModel> dataModel = <TransactionDataModel>[].obs;
   TextEditingController searchController = TextEditingController();
-
+  RxList SearchTransaction = [].obs;
   void getData() async {
     var data = await TransactionServices().getDataModel();
     dataModel.value = data;
-    print(dataModel.value.amount);
+  }
+
+  void searchData(String query) {
+    final suggestions = dataModel.where((data) {
+      final transaction = data.type.toString().split('.').last;
+      final input = query;
+      return transaction.contains(input);
+    }).toList();
+    SearchTransaction.value = suggestions;
   }
 }

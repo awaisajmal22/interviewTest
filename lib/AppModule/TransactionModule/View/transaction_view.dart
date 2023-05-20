@@ -25,18 +25,34 @@ class TransactionView extends StatelessWidget {
                 searchCallback: () {},
                 hintText: 'Search Here'),
             Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                  itemCount: 30,
-                  itemBuilder: (context, index) {
-                    return transactionListTile(
-                        date: '10',
-                        price: 20.0,
-                        transactionType: 'Pyramid',
-                        voidCallback: () {
-                          Get.toNamed(AppRoutes.transactionDetailView);
-                        });
-                  }),
+              child: Obx(
+                () => transactionVM.dataModel.value != null
+                    ? ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: transactionVM.dataModel.value.length,
+                        itemBuilder: (context, index) {
+                          var val = transactionVM.dataModel.value[index];
+                          var date = val.date;
+                          return transactionListTile(
+                              date: DateFormat('dd-MM-yyyy').format(date!),
+                              price: "${val.amount} ${val.currency}",
+                              transactionType:
+                                  val.type.toString().split('.').last,
+                              voidCallback: () {
+                                Get.toNamed(AppRoutes.transactionDetailView,
+                                    arguments: [
+                                      val.date,
+                                      val.amount,
+                                      val.currency,
+                                      val.type,
+                                      val.description
+                                    ]);
+                              });
+                        })
+                    : Center(
+                        child: CircularProgressIndicator(),
+                      ),
+              ),
             ),
           ],
         ),
