@@ -9,7 +9,7 @@ import 'package:test/RoutesAndBindings/app_routes.dart';
 
 void main() {
  
-  runApp(DevicePreview(enabled: true, builder: (contex) => const MyApp()));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
