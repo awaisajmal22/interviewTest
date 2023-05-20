@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:test/AppModule/TransactionModule/Services/transaction_services.dart';
 
@@ -11,7 +12,8 @@ class TransactionViewModel extends GetxController {
     getData();
     super.onInit();
   }
-
+final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+      GlobalKey<RefreshIndicatorState>();
   RxList<TransactionDataModel> dataModel = <TransactionDataModel>[].obs;
   TextEditingController searchController = TextEditingController();
   RxList SearchTransaction = [].obs;
@@ -23,9 +25,9 @@ class TransactionViewModel extends GetxController {
   void searchData(String query) {
     final suggestions = dataModel.where((data) {
       final transaction = data.type.toString().split('.').last;
-      final input = query;
+      final input = query.toUpperCase();
       return transaction.contains(input);
     }).toList();
-    SearchTransaction.value = suggestions;
+    dataModel.value = suggestions;
   }
 }

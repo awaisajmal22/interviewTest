@@ -22,36 +22,45 @@ class TransactionView extends StatelessWidget {
           children: [
             searchFormField(
                 controller: transactionVM.searchController,
-                searchCallback: () {},
+                searchCallback: () {
+                  transactionVM.searchData(transactionVM.searchController.text);
+                },
                 hintText: 'Search Here'),
-            Expanded(
-              child: Obx(
-                () => transactionVM.dataModel.value != null
-                    ? ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: transactionVM.dataModel.value.length,
-                        itemBuilder: (context, index) {
-                          var val = transactionVM.dataModel.value[index];
-                          var date = val.date;
-                          return transactionListTile(
-                              date: DateFormat('dd-MM-yyyy').format(date!),
-                              price: "${val.amount} ${val.currency}",
-                              transactionType:
-                                  val.type.toString().split('.').last,
-                              voidCallback: () {
-                                Get.toNamed(AppRoutes.transactionDetailView,
-                                    arguments: [
-                                      val.date,
-                                      val.amount,
-                                      val.currency,
-                                      val.type,
-                                      val.description
-                                    ]);
-                              });
-                        })
-                    : Center(
-                        child: CircularProgressIndicator(),
-                      ),
+            RefreshIndicator(
+              onRefresh: () async {
+                Future.delayed(Duration(seconds: 2), () {
+                  transactionVM.getData();
+                });
+              },
+              child: Expanded(
+                child: Obx(
+                  () => transactionVM.dataModel.value != null
+                      ? ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: transactionVM.dataModel.value.length,
+                          itemBuilder: (context, index) {
+                            var val = transactionVM.dataModel.value[index];
+                            var date = val.date;
+                            return transactionListTile(
+                                date: DateFormat('dd-MM-yyyy').format(date!),
+                                price: "${val.amount} ${val.currency}",
+                                transactionType:
+                                    val.type.toString().split('.').last,
+                                voidCallback: () {
+                                  Get.toNamed(AppRoutes.transactionDetailView,
+                                      arguments: [
+                                        val.date,
+                                        val.amount,
+                                        val.currency,
+                                        val.type,
+                                        val.description
+                                      ]);
+                                });
+                          })
+                      : Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                ),
               ),
             ),
           ],
