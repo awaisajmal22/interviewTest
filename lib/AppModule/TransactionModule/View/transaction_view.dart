@@ -17,19 +17,28 @@ class TransactionView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: SafeArea(
         child: Column(
           children: [
             searchFormField(
-                controller: transactionVM.searchController,
-                searchCallback: () {
-                  transactionVM.searchData(transactionVM.searchController.text);
+                clearCallback: () {
+                  transactionVM.searchController.clear();
+                  transactionVM.getData();
                 },
-                hintText: 'Search Transaction using Type'),
-            Obx(
-              () => transactionVM.dataModel.value != null
-                  ? Expanded(
-                      child: ListView.builder(
+                controller: transactionVM.searchController,
+                searchCallback: (value) {
+                  transactionVM.searchData(value!);
+                },
+                hintText: 'Search using Transaction Type'),
+            Expanded(
+              child:  Obx(
+                      ()=> transactionVM.dataModel.value.isEmpty 
+                  ? const Center(
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                      ),
+                    ) : ListView.builder(
                           shrinkWrap: true,
                           itemCount: transactionVM.dataModel.value.length,
                           itemBuilder: (context, index) {
@@ -53,9 +62,7 @@ class TransactionView extends StatelessWidget {
                                 });
                           }),
                     )
-                  : Center(
-                      child: CircularProgressIndicator(),
-                    ),
+                  
             ),
           ],
         ),

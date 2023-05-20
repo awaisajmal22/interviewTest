@@ -4,35 +4,41 @@ import 'package:sizer/sizer.dart';
 
 Widget searchFormField(
     {required TextEditingController controller,
-    required VoidCallback searchCallback,
+    required Function(String?)? searchCallback,
+    required VoidCallback clearCallback,
     required String hintText}) {
-  return TextFormField(
-    controller: controller,
-    cursorColor: Colors.grey,
-    style: TextStyle(
-        fontSize: 15.sp, color: Colors.black, fontWeight: FontWeight.w400),
-    textAlign: TextAlign.left,
-    decoration: InputDecoration(
-        hintText: hintText,
-        hintStyle: TextStyle(
-            fontSize: 15.sp, color: Colors.black, fontWeight: FontWeight.w400),
-        prefixIcon: GestureDetector(
-          onTap: searchCallback,
-          child: Icon(Icons.search),
-        ),
-
-        // ),
-
-        fillColor: Colors.white,
-        filled: true,
-        border: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.black),
-            borderRadius: BorderRadius.circular(10)),
-        focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.black),
-            borderRadius: BorderRadius.circular(10)),
-        enabledBorder: OutlineInputBorder(
-            borderSide: const BorderSide(color: Colors.black),
-            borderRadius: BorderRadius.circular(10))),
+  return Container(
+    alignment: Alignment.center,
+    margin: EdgeInsets.symmetric(horizontal: 2.0, vertical: 2.0),
+    child: TextFormField(
+      onFieldSubmitted: searchCallback as String? Function(String),
+      controller: controller,
+      cursorColor: Colors.black,
+      style: TextStyle(
+          color: Colors.grey, fontWeight: FontWeight.w400, fontSize: 13.sp),
+      decoration: InputDecoration(
+          contentPadding: const EdgeInsets.symmetric(vertical: 0),
+          suffixIcon: GestureDetector(
+            onTap: clearCallback,
+            child: const Icon(
+              Icons.close_outlined,
+              color: Colors.grey,
+              size: 20,
+            ),
+          ),
+          prefixIcon: const Icon(
+            Icons.search,
+            color: Colors.grey,
+            size: 20,
+          ),
+          hintStyle: TextStyle(
+              color: Colors.grey, fontWeight: FontWeight.w400, fontSize: 14.sp),
+          hintText: hintText,
+          fillColor: Colors.white,
+          filled: true,
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide.none)),
+    ),
   );
 }

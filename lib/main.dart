@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
           );
         },
         getPages: AppPages.routes,
-        initialRoute: AppRoutes.transactionView,
+        initialRoute: AppRoutes.splashView,
       );
     });
   }

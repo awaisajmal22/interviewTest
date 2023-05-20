@@ -5,7 +5,9 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
+import 'package:test/AppModule/TransactionDetailModule/View/Component/transaction_detail_tile.dart';
 import 'package:test/Constant/appText.dart';
+import 'package:test/Constant/seperator.dart';
 
 class TransactionDetailView extends StatelessWidget {
   TransactionDetailView({super.key});
@@ -21,46 +23,38 @@ class TransactionDetailView extends StatelessWidget {
           child: ListView(
         padding: EdgeInsets.symmetric(horizontal: 2.h, vertical: 2.h),
         children: [
-          appText(title: 'Date', textAlign: TextAlign.left, fontSize: 20.sp),
+          detailTile(
+              title: 'Date', subtitle: DateFormat('dd-MM-yyyy').format(date)),
           SizedBox(
             height: 2.h,
           ),
-          appText(
-              title: DateFormat('dd-MM-yyyy').format(date),
-              textAlign: TextAlign.left,
-              fontSize: 20.sp),
-          SizedBox(
-            height: 4.h,
-          ),
-          appText(title: 'Price', textAlign: TextAlign.left, fontSize: 20.sp),
+          const MySeparator(),
           SizedBox(
             height: 2.h,
           ),
-          appText(
-              title: "${ammount} ${curenccy}",
-              textAlign: TextAlign.left,
-              fontSize: 20.sp),
-          SizedBox(
-            height: 4.h,
-          ),
-          appText(title: 'Type', textAlign: TextAlign.left, fontSize: 20.sp),
+          detailTile(title: 'Price', subtitle: "${ammount} ${curenccy}"),
           SizedBox(
             height: 2.h,
           ),
-          appText(
-              title: type.toString().split('.').last,
-              textAlign: TextAlign.left,
-              fontSize: 20.sp),
+          const MySeparator(),
           SizedBox(
-            height: 4.h,
+            height: 2.h,
+          ),
+          detailTile(title: 'Type', subtitle: type.toString().split('.').last),
+          SizedBox(
+            height: 2.h,
+          ),
+          const MySeparator(),
+          SizedBox(
+            height: 2.h,
           ),
           appText(
               title: 'Description', textAlign: TextAlign.left, fontSize: 20.sp),
           SizedBox(
-            height: 2.h,
+            height: 0.5.h,
           ),
           appText(
-              title: description, textAlign: TextAlign.left, fontSize: 20.sp),
+              title: description, textAlign: TextAlign.left, fontSize: 15.sp),
         ],
       )),
     );
