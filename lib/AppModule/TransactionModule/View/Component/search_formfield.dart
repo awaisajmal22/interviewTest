@@ -7,6 +7,7 @@ Widget searchFormField(
     required VoidCallback searchCallback,
     required String hintText}) {
   return Container(
+    alignment: Alignment.center,
     padding: EdgeInsets.symmetric(horizontal: SizeConfig.widthMultiplier * 2.0),
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),

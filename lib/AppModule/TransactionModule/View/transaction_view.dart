@@ -25,17 +25,11 @@ class TransactionView extends StatelessWidget {
                 searchCallback: () {
                   transactionVM.searchData(transactionVM.searchController.text);
                 },
-                hintText: 'Search Here'),
-            RefreshIndicator(
-              onRefresh: () async {
-                Future.delayed(Duration(seconds: 2), () {
-                  transactionVM.getData();
-                });
-              },
-              child: Expanded(
-                child: Obx(
-                  () => transactionVM.dataModel.value != null
-                      ? ListView.builder(
+                hintText: 'Search Transaction using Type'),
+            Obx(
+              () => transactionVM.dataModel.value != null
+                  ? Expanded(
+                      child: ListView.builder(
                           shrinkWrap: true,
                           itemCount: transactionVM.dataModel.value.length,
                           itemBuilder: (context, index) {
@@ -56,12 +50,11 @@ class TransactionView extends StatelessWidget {
                                         val.description
                                       ]);
                                 });
-                          })
-                      : Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                ),
-              ),
+                          }),
+                    )
+                  : Center(
+                      child: CircularProgressIndicator(),
+                    ),
             ),
           ],
         ),
