@@ -45,28 +45,30 @@ class TransactionView extends StatelessWidget {
                         transactionVM.getData();
                       },
                       child: ListView.builder(
-                          shrinkWrap: true,
-                          itemCount: transactionVM.dataModel.value.length,
-                          itemBuilder: (context, index) {
-                            var val = transactionVM.dataModel.value[index];
-                            var date = val.date;
-                            return transactionListTile(
-                                context: context,
-                                date: DateFormat('dd-MM-yyyy').format(date!),
-                                price: "${val.amount} ${val.currency}",
-                                transactionType:
-                                    val.type.toString().split('.').last,
-                                voidCallback: () {
-                                  Get.toNamed(AppRoutes.transactionDetailView,
-                                      arguments: [
-                                        val.date,
-                                        val.amount,
-                                        val.currency,
-                                        val.type,
-                                        val.description
-                                      ]);
-                                });
-                          }),
+                              shrinkWrap: true,
+                              itemCount: transactionVM.dataModel.value.length,
+                              itemBuilder: (context, index) {
+                                var val = transactionVM.dataModel.value[index];
+                                var date = val.date;
+                                return transactionListTile(
+                                    context: context,
+                                    date:
+                                        DateFormat('dd-MM-yyyy').format(date!),
+                                    price: "${val.amount} ${val.currency}",
+                                    transactionType:
+                                        val.type.toString().split('.').last,
+                                    voidCallback: () {
+                                      Get.toNamed(
+                                          AppRoutes.transactionDetailView,
+                                          arguments: [
+                                            val.date,
+                                            val.amount,
+                                            val.currency,
+                                            val.type,
+                                            val.description
+                                          ]);
+                                    });
+                              }),
                     ),
             )),
           ],

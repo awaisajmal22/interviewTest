@@ -12,7 +12,8 @@ class TransactionViewModel extends GetxController {
     getData();
     super.onInit();
   }
-final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+
+  final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
       GlobalKey<RefreshIndicatorState>();
   RxList<TransactionDataModel> dataModel = <TransactionDataModel>[].obs;
   TextEditingController searchController = TextEditingController();
@@ -23,11 +24,15 @@ final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
   }
 
   void searchData(String query) {
-    final suggestions = dataModel.where((data) {
-      final transaction = data.type.toString().split('.').last;
-      final input = query.toUpperCase();
-      return transaction.contains(input);
-    }).toList();
-    dataModel.value = suggestions;
+    if (query.isEmpty) {
+      getData();
+    } else {
+      final suggestions = dataModel.where((data) {
+        final transaction = data.type.toString().split('.').last;
+        final input = query.toUpperCase();
+        return transaction.contains(input);
+      }).toList();
+      dataModel.value = suggestions;
+    }
   }
 }
