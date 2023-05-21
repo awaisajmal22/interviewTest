@@ -19,7 +19,8 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     // TODO: implement initState
-    Timer(Duration(seconds: 4), () => Get.toNamed(AppRoutes.transactionView));
+    Timer(Duration(seconds: 4),
+        () => Get.offAndToNamed(AppRoutes.transactionView));
     super.initState();
   }
 
