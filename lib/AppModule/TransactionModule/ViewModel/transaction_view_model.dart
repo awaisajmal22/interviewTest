@@ -17,10 +17,15 @@ class TransactionViewModel extends GetxController {
       GlobalKey<RefreshIndicatorState>();
   RxList<TransactionDataModel> dataModel = <TransactionDataModel>[].obs;
   TextEditingController searchController = TextEditingController();
-  RxList SearchTransaction = [].obs;
   void getData() async {
     var data = await TransactionServices().getDataModel();
     dataModel.value = data;
+    final sortedData = dataModel.map((sort) => sort).toList()
+      ..sort(
+        (a, b) => DateTime.parse(a.date!.toIso8601String())
+            .compareTo(DateTime.parse(b.date!.toIso8601String())),
+      );
+    dataModel.value = sortedData;
   }
 
   void searchData(String query) {
