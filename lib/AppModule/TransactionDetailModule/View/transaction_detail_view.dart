@@ -19,10 +19,21 @@ class TransactionDetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: SafeArea(
           child: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 2.h, vertical: 2.h),
+        padding: EdgeInsets.symmetric(
+          horizontal: 2.h,
+          vertical: 2.h,
+        ),
         children: [
+          appText(
+              title: 'Transaction Detail',
+              fontSize: 24.sp,
+              textColor: Colors.white),
+          SizedBox(
+            height: 3.h,
+          ),
           detailTile(
               title: 'Date', subtitle: DateFormat('dd-MM-yyyy').format(date)),
           SizedBox(
@@ -49,12 +60,18 @@ class TransactionDetailView extends StatelessWidget {
             height: 2.h,
           ),
           appText(
-              title: 'Description', textAlign: TextAlign.left, fontSize: 20.sp),
+              title: 'Description',
+              textAlign: TextAlign.left,
+              fontSize: 20.sp,
+              textColor: Colors.white),
           SizedBox(
             height: 0.5.h,
           ),
           appText(
-              title: description, textAlign: TextAlign.left, fontSize: 15.sp),
+              title: description,
+              textAlign: TextAlign.left,
+              fontSize: 15.sp,
+              textColor: Colors.white),
         ],
       )),
     );

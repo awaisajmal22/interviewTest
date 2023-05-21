@@ -28,8 +28,10 @@ class _SplashViewState extends State<SplashView> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Center(
-        child:
-            appText(title: 'Welcome', fontSize: 24.sp, textColor: Colors.white),
+        child: appText(
+            title: 'Transaction History',
+            fontSize: 24.sp,
+            textColor: Colors.white),
       ),
     );
   }

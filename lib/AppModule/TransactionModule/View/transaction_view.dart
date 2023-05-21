@@ -32,13 +32,19 @@ class TransactionView extends StatelessWidget {
                 },
                 hintText: 'Search using Transaction Type'),
             Expanded(
-              child:  Obx(
-                      ()=> transactionVM.dataModel.value.isEmpty 
+                child: Obx(
+              () => transactionVM.dataModel.value.isEmpty
                   ? const Center(
                       child: CircularProgressIndicator(
                         color: Colors.white,
                       ),
-                    ) : ListView.builder(
+                    )
+                  : RefreshIndicator(
+                      color: Colors.black,
+                      onRefresh: () async {
+                        transactionVM.getData();
+                      },
+                      child: ListView.builder(
                           shrinkWrap: true,
                           itemCount: transactionVM.dataModel.value.length,
                           itemBuilder: (context, index) {
@@ -61,9 +67,8 @@ class TransactionView extends StatelessWidget {
                                       ]);
                                 });
                           }),
-                    )
-                  
-            ),
+                    ),
+            )),
           ],
         ),
       ),
