@@ -1,16 +1,9 @@
-# test
+# Interview Test
 
 A new Flutter project.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Project Outputs
+![1](https://github.com/awaisajmal22/interviewTest/assets/120619553/c119074f-7555-4a86-b617-333a8a0cf809)
+![2](https://github.com/awaisajmal22/interviewTest/assets/120619553/9443aaf7-527a-488e-8012-b4e4f1f379b0)
+![3](https://github.com/awaisajmal22/interviewTest/assets/120619553/e689acbc-835f-4802-aa28-3ca65a8cc385)
+![4](https://github.com/awaisajmal22/interviewTest/assets/120619553/e28d67ab-46e8-4fc4-8e4c-407c78178992)
